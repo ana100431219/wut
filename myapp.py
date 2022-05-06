@@ -1,6 +1,5 @@
 import sqlite3 as sql
 import pandas as pd 
-from sqlite3.dbapi2 import DatabaseError
 from PIL import Image
 import pandas as pd 
 
