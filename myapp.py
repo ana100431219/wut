@@ -3,13 +3,11 @@ import pandas as pd
 from sqlite3.dbapi2 import DatabaseError
 from PIL import Image
 import pandas as pd 
-from google.colab import drive
-drive.mount('/content/drive', force_remount=True)
 
 con= sqlite3.connect('ecsel_database.db')
-df_participants=pd.read_excel('/content/drive/MyDrive/participants.xlsx')
-df_countries=pd.read_excel('/content/drive/MyDrive/countries.xlsx')
-df_projects=pd.read_excel('/content/drive/MyDrive/projects.xlsx')
+df_participants=pd.read_excel('https://github.com/Ayalh/wut/blob/main/participants.xlsx')
+df_countries=pd.read_excel('https://github.com/Ayalh/wut/blob/main/countries.xlsx')
+df_projects=pd.read_excel('https://github.com/Ayalh/wut/blob/main/projects.xlsx')
 
 df_projects.to_sql('projects', con, if_exists='replace', index= False)
 df_countries.to_sql('countries', con, if_exists='replace', index= False)
