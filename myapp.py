@@ -1,5 +1,3 @@
-df_projects.head()
-
 
 acronyms=list(df_countries.Acronym) 
 countries=list(df_countries.Country)
