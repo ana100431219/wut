@@ -1,3 +1,4 @@
+database='ecsel_database'
 
 acronyms=list(df_countries.Acronym) 
 countries=list(df_countries.Country)
