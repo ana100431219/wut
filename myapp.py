@@ -5,8 +5,8 @@ import pandas as pd
 
 con= sqlite3.connect('ecsel_database.db')
 df_participants=pd.read_excel('/Ayalh/wut/blob/main/participants.xlsx')
-df_countries=pd.read_excel('/github.com/Ayalh/wut/blob/main/countries.xlsx')
-df_projects=pd.read_excel('/github.com/Ayalh/wut/blob/main/projects.xlsx')
+df_countries=pd.read_excel('/Ayalh/wut/blob/main/countries.xlsx')
+df_projects=pd.read_excel('/Ayalh/wut/blob/main/projects.xlsx')
 
 df_projects.to_sql('projects', con, if_exists='replace', index= False)
 df_countries.to_sql('countries', con, if_exists='replace', index= False)
