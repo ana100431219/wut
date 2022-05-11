@@ -21,13 +21,22 @@ class TestStringMethods(unittest.TestCase):
     def test_hotwords(self):
         # This function tests the 'kw.extract_words(text)' function
         # Do not modify the function name
-        # Insert your code here:
+        # Insert your code here: 
+        extractedwords=kw.extract_words(text)
+        self.assertEqual(extractedwords,s)
+
 
     def test_count(self):
         # This function tests the 'kw.words_count' function
         # Requires to use 'kw.extract_all_words(text)' as an intermediate step to get the words list        
         # Do not modify the function name
         # Insert your code here:
+        nofwords=kw.words_count(kw.extract_all_words(text))
+        self.assertEqual(d,nofwords)
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 if __name__ == '__main__':
     unittest.main()
