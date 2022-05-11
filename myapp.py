@@ -69,3 +69,8 @@ st.download_button(
     file_name=f'{country}_participants.csv',
     mime='text/csv',
 )
+
+#coordinators
+st.subheader(f'Project coordinators in {ct}')
+st.dataframe(dfs['coordinators'])
+csv_c=dfs['coordinators'].to_csv().encode('utf-8')
