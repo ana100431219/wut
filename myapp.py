@@ -34,23 +34,26 @@ image=Image.open('KDT-JU.png')
 st.image(image)
 st.title('Partner search tool')
 
+
 #Select country
 conn=sqlite3.connect(database)
-ct= st.selectbox('Select country', ['Spain', 'France', 'Germany'])
-country=pd.read_sql(selects['country'].format(ct), conn)
-country=country.Acronym.item()
+df_countries= pd.read_sql('SELECT * FROM countries', conn)  #for get all data from table countries
+countries=list(df_countries.Country) #for selectbox
+
+ct= st.selectbox('Select country', countries)
+country = df_countries[df_countries.Country== ct].Acronym.item()
+
 st.write(f'You selected: {country}-{ct}')
 
-#other selects
 dfs={}
-for key,sel in selects.items():
+for key, sel in selects.items():
   dfs[key]=pd.read_sql(sel.format(country), conn)
 
-df_grants_year = pd.read_sql('''SELECT p.year, SUM(o.ecContribution) AS grants
-    FROM organizations o JOIN projects p ON o.projectID==p.projectID
-    WHERE o.country='{}'
-    GROUP BY p.year '''.format(country), conn)
-conn.close()
+df_grants_year = pd.read_sql('''SELECT j.year, SUM(p.ecContribution) AS grants
+    FROM participants p JOIN projects j ON p.projectID==j.projectID
+    WHERE p.country='{}'
+    GROUP BY j.year '''.format(country), conn)
+
 
 #grants
 st.subheader(f'Yearly EC contribution in {ct} (€)')
@@ -66,8 +69,3 @@ st.download_button(
     file_name=f'{country}_participants.csv',
     mime='text/csv',
 )
-
-#coordinators
-st.subheader(f'Project coordinators in {ct}')
-st.dataframe(dfs['coordinators'])
-csv_c=dfs['coordinators'].to_csv().encode('utf-8')
