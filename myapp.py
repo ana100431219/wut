@@ -30,7 +30,7 @@ selects= {
 }
 
 #Title
-image=Image.open('descarga.png')
+image=Image.open('KDT-JU.png')
 st.image(image)
 st.title('Partner search tool')
 
