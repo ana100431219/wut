@@ -56,7 +56,7 @@ df_grants_year = pd.read_sql('''SELECT j.year, SUM(p.ecContribution) AS grants
 
 #grants
 st.subheader(f'Yearly EC contribution in {ct} (€)')
-st.bar_chart(dfs[grants])
+st.bar_chart(dfs[grant])
 
 #participants
 st.subheader(f'Participants in {ct}')
