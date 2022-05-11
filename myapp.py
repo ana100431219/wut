@@ -36,8 +36,8 @@ st.title('Partner search tool')
 
 #Select country
 conn=sqlite3.connect(database)
-df_countries= pd.read_sql('SELECT * FROM countries', conn)  #for get all data from table countries
-countries=list(df_countries.Country) #for selectbox
+df_countries= pd.read_sql('SELECT * FROM countries', conn)
+countries=list(df_countries.Country)
 
 ct= st.selectbox('Select country', countries)
 country = df_countries[df_countries.Country== ct].Acronym.item()
