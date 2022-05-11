@@ -9,31 +9,30 @@ from PIL import Image
 database = 'CreateDB.db'
 selects= {
 'country':
-'''SELECT Acronym FROM countries WHERE Country = "{}" ''',
+'''SELECT Acronym FROM countries WHERE Country = '{}' ''',
 
 'grants':
-'''SELECT SUM (o.ecContribution) AS grants
-  FROM organizations o JOIN projects p ON o.projectID==p.projectID
-  WHERE o.country = '{}'
-  GROUP BY p.year''',
+'''SELECT SUM(p.ecContribution) AS grants
+  FROM participants p JOIN projects j ON p.projectID==j.projectID
+  WHERE p.country = '{}'
+  GROUP BY j.year''',
 
 'participants':
-'''SELECT shortName, name, activityType, organizationURL, COUNT(ecContribution) n_projects, SUM(ecContribution)   #maybe this is incomplete
-  FROM organizations
-  WHERE country = '{}'
+'''SELECT shortName, name, activityType, organizationURL, COUNT(ecContribution) n_projects, SUM(ecContribution)   
+  FROM participants p
+  WHERE p.country = '{}'
   GROUP BY name ORDER BY SUM(ecContribution) DESC''',
 
 'coordinators':
-'''SELECT o.shortName, o.name, p.acronym, p.keywords
-  FROM organizations o JOIN projects p ON o.projectID = p.projectID
-  WHERE o.country='{}' AND o.role = 'coordinator' '''
+'''SELECT p.shortName, p.name, j.acronym
+  FROM participants p JOIN projects j ON p.projectID = j.projectID
+  WHERE p.country='{}' AND p.role = 'coordinator' '''
 }
 
 #Title
-image=Image.open('KDT-JU.png')
+image=Image.open('descarga.png')
 st.image(image)
 st.title('Partner search tool')
-
 
 #Select country
 conn=sqlite3.connect(database)
