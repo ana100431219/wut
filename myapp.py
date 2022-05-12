@@ -1,10 +1,7 @@
 import sqlite3 
 import pandas as pd 
 import streamlit as st
-from sqlite3.dbapi2 import DatabaseError
 from PIL import Image
-
-#colnames={c:c for c in list(df_countries)}
 
 database = 'ecsel_database.db'
 selects= {
@@ -74,6 +71,11 @@ st.download_button(
 #coordinators
 st.subheader(f'Project coordinators in {ct}')
 st.dataframe(dfs['coordinators'])
-csv_c=dfs['coordinators'].to_csv().encode('utf-8')
 
+st.download_button(
+    label= 'Download coordinators data as CSV',
+    data=csv_c,
+    file_name=f'{country}_coordinators.csv',
+    mime='text/csv',
+)
 conn.close()
