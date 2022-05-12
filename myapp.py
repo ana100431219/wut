@@ -29,7 +29,7 @@ selects= {
 #Title
 image=Image.open('KDT-JU.png')
 st.image(image)
-st.title('Partner search tool')
+st.title('Partner Search Tool')
 
 #Select country
 conn=sqlite3.connect(database)
