@@ -71,6 +71,7 @@ st.download_button(
 #coordinators
 st.subheader(f'Project coordinators in {ct}')
 st.dataframe(dfs['coordinators'])
+csv_c=dfs['coordinators'].to_csv().encode('utf-8')
 
 st.download_button(
     label= 'Download coordinators data as CSV',
