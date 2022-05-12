@@ -9,7 +9,7 @@ selects= {
 '''SELECT Acronym FROM countries WHERE Country = '{}' ''',
 
 'grants':
-'''SELECT SUM(p.ecContribution) AS grants
+'''SELECT j.year, SUM(p.ecContribution) AS grants
   FROM participants p JOIN projects j ON p.projectID==j.projectID
   WHERE p.country = '{}'
   GROUP BY j.year''',
@@ -45,15 +45,9 @@ dfs={}
 for key, sel in selects.items():
   dfs[key]=pd.read_sql(sel.format(country), conn)
 
-df_grants_year = pd.read_sql('''SELECT j.year, SUM(p.ecContribution) AS grants
-    FROM participants p JOIN projects j ON p.projectID==j.projectID
-    WHERE p.country='{}'
-    GROUP BY j.year '''.format(country), conn)
-
 
 #grants
 st.subheader(f'Yearly EC contribution in {ct} (€)')
-
 st.bar_chart(dfs['grants'])
 
 
