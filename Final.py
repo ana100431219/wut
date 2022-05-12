@@ -5,9 +5,6 @@ from PIL import Image
 
 database = 'ecsel_database.db'
 selects= {
-'country':
-'''SELECT Acronym FROM countries WHERE Country = '{}' ''',
-
 'grants':
 '''SELECT j.year, SUM(p.ecContribution) AS grants
   FROM participants p JOIN projects j ON p.projectID==j.projectID
