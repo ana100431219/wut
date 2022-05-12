@@ -34,9 +34,5 @@ class TestStringMethods(unittest.TestCase):
         nofwords=kw.words_count(kw.extract_all_words(text))
         self.assertEqual(d,nofwords)
 
-
-if __name__ == '__main__':
-    unittest.main()
-
 if __name__ == '__main__':
     unittest.main()
